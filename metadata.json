@@ -1,0 +1,6 @@
+{
+  "name": "Envenenada Pelo Seu Amor — A Noiva Substituta",
+  "description": "Página de vendas oficial do dorama 'Envenenada Pelo Seu Amor — A Noiva Substituta'. Assista aos 56 episódios completos por apenas R$ 9,90.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
