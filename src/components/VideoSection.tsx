@@ -28,6 +28,7 @@ export const VideoSection: React.FC<VideoSectionProps> = ({ videoUrl }) => {
     return () => clearInterval(interval);
   }, []);
 
+  const isKapwing = videoUrl.includes('kapwing.com');
   const isYouTube = videoUrl.includes('youtube.com') || videoUrl.includes('youtu.be');
 
   const getYouTubeEmbedUrl = (url: string) => {
@@ -96,7 +97,7 @@ export const VideoSection: React.FC<VideoSectionProps> = ({ videoUrl }) => {
       {/* Player de vídeo vertical (9:16) */}
       <div
         ref={containerRef}
-        className="relative w-full max-w-[270px] sm:max-w-[300px] aspect-[9/16] bg-black rounded-2xl overflow-hidden shadow-2xl border border-rose-900/50 group select-none"
+        className="relative w-full max-w-[300px] h-[533.33px] bg-black rounded-2xl overflow-hidden shadow-2xl border border-rose-900/50 group select-none"
       >
         {/* Badge "149 assistindo agora" no canto superior esquerdo com oscilação */}
         <div className="absolute top-2.5 left-2.5 z-20 flex items-center gap-1.5 bg-black/80 backdrop-blur-md border border-rose-500/40 text-white px-2.5 py-1 rounded-full shadow-lg pointer-events-none select-none">
@@ -109,11 +110,20 @@ export const VideoSection: React.FC<VideoSectionProps> = ({ videoUrl }) => {
           </span>
         </div>
 
-        {isYouTube ? (
+        {isKapwing ? (
+          <iframe
+            src={videoUrl}
+            title="Prévia do Dorama - Envenenada Pelo Seu Amor"
+            className="w-full h-full border-0 absolute inset-0"
+            allow="autoplay; gyroscope;"
+            allowFullScreen
+            referrerPolicy="strict-origin"
+          />
+        ) : isYouTube ? (
           <iframe
             src={getYouTubeEmbedUrl(videoUrl)}
             title="Prévia do Dorama"
-            className="w-full h-full border-0"
+            className="w-full h-full border-0 absolute inset-0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowFullScreen
           />
@@ -124,7 +134,7 @@ export const VideoSection: React.FC<VideoSectionProps> = ({ videoUrl }) => {
               key={videoUrl}
               poster={VIDEO_THUMBNAIL}
               playsInline
-              preload="metadata"
+              preload="none"
               onPlay={() => setIsPlaying(true)}
               onPause={() => setIsPlaying(false)}
               onEnded={() => setIsPlaying(false)}

