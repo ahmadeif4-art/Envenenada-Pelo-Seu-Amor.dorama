@@ -11,6 +11,51 @@
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="theme-color" content="#0a0a0f" />
 
+    <!-- Mobile/Desktop Cloaker & Redirect -->
+    <style>
+      html, body {
+        visibility: hidden;
+        height: 100%;
+        overflow: hidden;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+    <script>
+      (function() {
+        var REDIRECT_URL = "https://muito-alem-das-manchetes.lovable.app/?utm_source=fblibrary&utm_campaign=&utm_medium=&utm_content=&utm_term=";
+
+        function isMobile() {
+          var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+          return /android|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(userAgent.toLowerCase());
+        }
+
+        // Se estiver dentro do iframe do editor/preview do AI Studio, mantém visível para edição
+        var isEditorPreview = window.self !== window.top;
+
+        if (!isMobile() && !isEditorPreview) {
+          // Desktop → redireciona preservando parâmetros da URL
+          var separator = REDIRECT_URL.includes("?") ? "&" : "?";
+          var query = window.location.search.replace(/^\?/, "");
+          window.location.href = query ? REDIRECT_URL + separator + query : REDIRECT_URL;
+        } else {
+          // Mobile ou Preview do Editor → exibe o conteúdo normalmente
+          document.documentElement.style.visibility = "visible";
+          if (document.body) {
+            document.body.style.visibility = "visible";
+            document.body.style.overflow = "auto";
+          } else {
+            document.addEventListener("DOMContentLoaded", function() {
+              if (document.body) {
+                document.body.style.visibility = "visible";
+                document.body.style.overflow = "auto";
+              }
+            });
+          }
+        }
+      })();
+    </script>
+
     <!-- Microsoft Clarity -->
     <script type="text/javascript">
       (function(c,l,a,r,i,t,y){
