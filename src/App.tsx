@@ -9,6 +9,7 @@ import { UrgencyHeader } from './components/UrgencyHeader';
 import { HeroSection } from './components/HeroSection';
 import { VideoSection } from './components/VideoSection';
 import { OfferSection } from './components/OfferSection';
+import { SalesToast } from './components/SalesToast';
 
 // Lazy loading das seções abaixo da dobra e do modal para carregamento ultrarrápido
 const MiniGuarantee = lazy(() =>
@@ -51,6 +52,9 @@ export default function App() {
     <div className="min-h-screen bg-[#08080a] text-zinc-100 flex flex-col font-sans selection:bg-rose-600 selection:text-white">
       {/* 1. Banner de urgência no topo */}
       <UrgencyHeader />
+
+      {/* Notificações de compra minimalistas (canto superior direito) */}
+      <SalesToast />
 
       {/* Conteúdo principal direto, cinematográfico e sem distrações */}
       <main className="flex-1 pb-12">
