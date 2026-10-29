@@ -13,19 +13,44 @@ export const VideoSection: React.FC<VideoSectionProps> = ({ videoUrl }) => {
   const videoRef = useRef<HTMLVideoElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
 
-  // Contador oscilante aumentando mais rápido
+  // Contador oscilante orgânico com crescimento levemente mais rápido e oscilações naturais
   useEffect(() => {
-    const interval = setInterval(() => {
-      setViewers((prev) => {
-        // 85% chance de subir (+2 a +5), 15% chance de oscilar (-1)
-        const shouldIncrease = Math.random() < 0.85;
-        const change = shouldIncrease ? Math.floor(Math.random() * 4) + 2 : -1;
-        const nextVal = prev + change;
-        return nextVal < 148 ? 149 : nextVal;
-      });
-    }, 1300);
+    let timeoutId: ReturnType<typeof setTimeout>;
 
-    return () => clearInterval(interval);
+    const tick = () => {
+      setViewers((prev) => {
+        // Distribuição orgânica (levemente mais dinâmica):
+        // ~68% sobe (+1 a +4)
+        // ~24% tem uma ou outra queda (-1 a -2)
+        // ~8% mantém estável (0)
+        const roll = Math.random();
+        let delta = 0;
+
+        if (roll < 0.68) {
+          // Subida orgânica mais ritmada
+          delta = Math.random() < 0.52 ? 1 : Math.random() < 0.82 ? 2 : Math.random() < 0.94 ? 3 : 4;
+        } else if (roll < 0.92) {
+          // Queda natural (oscilação real: -1 ou -2)
+          delta = Math.random() < 0.78 ? -1 : -2;
+        } else {
+          // Pequena pausa natural
+          delta = 0;
+        }
+
+        const nextVal = prev + delta;
+        // Piso dinâmico em torno de 145 para preservar a ancoragem inicial
+        return nextVal < 145 ? 146 + Math.floor(Math.random() * 3) : nextVal;
+      });
+
+      // Intervalo variável aleatório entre 1.1s e 2.4s (ritmo levemente mais rápido)
+      const nextDelay = 1100 + Math.random() * 1300;
+      timeoutId = setTimeout(tick, nextDelay);
+    };
+
+    // Primeiro disparo rápido em 0.8s
+    timeoutId = setTimeout(tick, 800);
+
+    return () => clearTimeout(timeoutId);
   }, []);
 
   const isKapwing = videoUrl.includes('kapwing.com');
@@ -106,7 +131,7 @@ export const VideoSection: React.FC<VideoSectionProps> = ({ videoUrl }) => {
             <span className="relative inline-flex rounded-full h-2 w-2 bg-rose-500"></span>
           </span>
           <span className="text-[11px] font-bold tracking-tight">
-            <span className="text-white font-price font-black mr-0.5">{viewers}</span> assistindo agora
+            <span className="text-white font-price font-black tabular-nums transition-all duration-300 mr-0.5">{viewers}</span> assistindo agora
           </span>
         </div>
 
